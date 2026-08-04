@@ -1,0 +1,10 @@
+{
+  "name": "ridehub",
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "echo \"Run a specific service instead.\""
+  }
+}
