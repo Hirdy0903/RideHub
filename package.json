@@ -5,6 +5,9 @@
     "services/*"
   ],
   "scripts": {
-    "dev": "echo \"Run a specific service instead.\""
+    "dev": "concurrently \"npm run dev --workspace=api-gateway\" \"npm run dev --workspace=auth\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4"
   }
 }
