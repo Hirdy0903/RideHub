@@ -1,5 +1,5 @@
 const authService = require("../services/auth.services");
-const { signupSchema } = require("../validators/auth.validator");
+const { signupSchema,loginSchema,} = require("../validators/auth.validator");
 
 const signup = async (req, res) => {
     try {
@@ -41,7 +41,27 @@ const login = async (req, res) => {
         });
     }
 };
+const refresh = async (req, res) => {
+    try {
+        const { refreshToken } = req.body;
+
+        if (!refreshToken) {
+            return res.status(400).json({
+                message: "Refresh token is required",
+            });
+        }
+
+        const result = await authService.refresh(refreshToken);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(401).json({
+            message: error.message,
+        });
+    }
+};
 module.exports = {
     signup,
     login,
+    refresh,
 };
